@@ -17,7 +17,7 @@
   * AWS lambdaの基本的な使い方と、今回の開発概要の理解
   * psycopg2とlambda-packagesのインストール
 1. 開発1_基本構成の設定
-  * libraryディレクトリの作成
+  * libraryディレクトリ以下のpyファイル作成
   * lambda_function.pyの作成
   * s3_main.pyの作成
 1. 開発2_主要機能の実装
