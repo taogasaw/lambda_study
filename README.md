@@ -12,18 +12,18 @@
 
 ## 勉強会概要
 1. 環境設定  
-* pyenvとvirtualenvのインストール、使い方
-* AWS lambdaの基本的な使い方と、今回の開発概要の理解
-* psycopg2とlambda-packagesのインストール
+  * pyenvとvirtualenvのインストール、使い方
+  * AWS lambdaの基本的な使い方と、今回の開発概要の理解
+  * psycopg2とlambda-packagesのインストール
 1. 開発1_基本構成の設定
-* libraryディレクトリの作成
-* lambda_function.pyの作成
-* s3_main.pyの作成
+  * libraryディレクトリの作成
+  * lambda_function.pyの作成
+  * s3_main.pyの作成
 1. 開発2_主要機能の実装
-* s3からCSVのDL、解析
-* オリジナルと変更後のCSVをs3へUP
-* DBへ保存
+  * s3からCSVのDL、解析
+  * オリジナルと変更後のCSVをs3へUP
+  * DBへ保存
 1. 開発3_AWS環境設定とデプロイ
-* AWSにlambda/DBの環境構築
-* zip_for_deploy.pyの開発
-* デプロイして挙動確認
+  * AWSにlambda/DBの環境構築
+  * zip_for_deploy.pyの開発
+  * デプロイして挙動確認
