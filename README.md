@@ -13,7 +13,7 @@
 
 ## 勉強会概要
 1. 環境設定  
-  * pyenvとvirtualenvのインストール、使い方
+  * pyenvとpyenv-virtualenvのインストール、使い方
   * AWS lambdaの基本的な使い方と、今回の開発概要の理解
   * psycopg2とlambda-packagesのインストール
 1. 開発1_基本構成の設定
