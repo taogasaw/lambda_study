@@ -13,18 +13,19 @@ if os.path.exists(zip_name):
 
 with zipfile.ZipFile(zip_name, "w", zipfile.ZIP_DEFLATED) as zip_file:
     for dir_path, dirnames, filenames in os.walk(dir_path):
-        # ディレクトリに中にファイルがなかった場合
+        # 余計なディレクトリはスキップ
+        if re.match(r'^\./db.*|^\./\.git.*', dir_path) is not None:
+            continue
+
+        # ディレクトリに中にファイルがなかった場合も一応入れる
         if not filenames:
             zip_file.write(dir_path + "/")
+
         for filename in filenames:
+            # 余計なファイルはスキップ
+            if re.match(r'.+\.csv|.+\.zip|^\..+|.+\.md', filename) is not None:
+                continue
             filepath = os.path.join(dir_path, filename)
-
-            # 必要なsourceだけzip内に書き込む
-            if dir_path in ['db']:
-                continue
-            if re.match(r'.+\.csv', filename) is not None:
-                continue
-
             zip_file.write(filepath)
 
 os.rename("./psycopg2", "./_for_lambda_psycopg2")
