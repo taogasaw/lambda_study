@@ -31,5 +31,5 @@
   * zip_for_deploy.pyの開発
   * デプロイして挙動確認
 
-## 全体像
+## 本会で目指すシステム全体像
 目指す全体像は[ここに](https://github.com/taogasaw/lambda_study/wiki/全体構成)上げておきます
