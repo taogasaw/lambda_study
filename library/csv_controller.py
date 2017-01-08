@@ -3,12 +3,12 @@ import csv
 import zipfile
 import traceback
 import sys
+import boto3
 
 from library.util import Util
 from library.app_log import AppLog
 from library.settings import Settings
 from library.db_connect import DBConnect
-import library.aws_resource as AwsResources
 
 
 class CsvController(object):
@@ -46,7 +46,7 @@ class CsvController(object):
         with zipfile.ZipFile(tmp_csv_zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipFile:
             zipFile.write(tmp_csv_file_path, tmp_csv_file_name)
 
-        s3 = AwsResources.get_s3()
+        s3 = boto3.resource('s3')
         bucket = s3.Bucket(Settings.get_s3_bucket())
         # 変換結果をバックアップの意味でUP
         with open(tmp_csv_zip_file_path, 'rb') as csv_up_data:

@@ -3,8 +3,8 @@ from library.app_log import AppLog
 from library.util import Util
 from library.csv_controller import CsvController
 from library.settings import Settings
-import library.aws_resource as AwsResources
 import sys
+import boto3
 
 from datetime import datetime
 import zipfile
@@ -21,7 +21,7 @@ def data_import(key):
         AppLog.save('s3_main.data_import 開始', key)
 
         # S3からDL 別名で保存
-        s3 = AwsResources.get_s3()
+        s3 = boto3.resource('s3')
         bucket = s3.Bucket(Settings.get_s3_bucket())
         code = 'netmarketing'  # とりあえず決め打ち 本来は判別する
         org_csv_file_name = '{cd}_{dt}_{hs}_org.csv'.format(
@@ -61,3 +61,12 @@ def data_import(key):
         # エラー書き込み
         import traceback
         AppLog.save('s3_main.data_import エラー', traceback.format_exc())
+
+
+# デバックが地味に手間なので、
+# 事前に仮想環境を選択、s3にcsvをUPし、下記をターミナルにコピペ
+#
+# pythpn
+# import s3_main
+# s3_main.data_import('up/sample.csv')
+# exit()
