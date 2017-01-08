@@ -32,4 +32,4 @@
   * デプロイして挙動確認
 
 ## 全体像
-目指す全体像は[ここに](wiki/全体構成)上げておきます
+目指す全体像は[ここに](https://github.com/taogasaw/lambda_study/wiki/全体構成)上げておきます
