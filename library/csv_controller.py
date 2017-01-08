@@ -6,7 +6,6 @@ import sys
 import boto3
 
 from library.util import Util
-from library.app_log import AppLog
 from library.settings import Settings
 from library.db_connect import DBConnect
 
@@ -36,12 +35,12 @@ class CsvController(object):
             for i, csv_container in enumerate(arr_csv_container):  # indexつきで処理
                 try:
                     row_data = []
-                    row_data.append(Util.str_none_to_empty(csv_container.name))
+                    row_data.append(csv_container.name)
                     row_data.append(csv_container.telephone)
                     csv_writer.writerow(row_data)
 
                 except:
-                    AppLog.save('CsvController.save', traceback.format_exc())
+                    Util.put('CsvController.save', traceback.format_exc())
 
         with zipfile.ZipFile(tmp_csv_zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipFile:
             zipFile.write(tmp_csv_file_path, tmp_csv_file_name)
@@ -59,7 +58,7 @@ class CsvController(object):
 
     @classmethod
     def insert_web_tmp_db(cls, arr_csv_container, csv_file_name):
-        u"ぽけWebのadvertisement_tmpsへ投げる"
+        u"advertisement_tmpsへ投げる"
         csv_controller = cls()
 
         # ad_tmpへインサート
@@ -93,4 +92,4 @@ class CsvController(object):
                     cur.execute(sql, tpl)
 
         except:
-            AppLog.save('_save_web_tmp_db エラー', traceback.format_exc() + '\r\n\r\n' + sql)
+            Util.put('_save_web_tmp_db エラー', traceback.format_exc() + '\r\n\r\n' + sql)

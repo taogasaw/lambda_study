@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from library.app_log import AppLog
 from library.util import Util
 from library.csv_controller import CsvController
 from library.settings import Settings
@@ -17,8 +16,7 @@ def data_import(key):
         reload(sys)
         sys.setdefaultencoding("utf-8")
 
-        save_info = ''
-        AppLog.save('s3_main.data_import 開始', key)
+        Util.put('s3_main.data_import 開始', key)
 
         # S3からDL 別名で保存
         s3 = boto3.resource('s3')
@@ -27,7 +25,7 @@ def data_import(key):
         org_csv_file_name = '{cd}_{dt}_{hs}_org.csv'.format(
           cd=code,
           dt=datetime.now().strftime('%Y%m%d_%H%M%S'),
-          hs=hashlib.sha224(key).hexdigest()[0:10]
+          hs=hashlib.sha224(key).hexdigest()[0:10]  # 複数ファイル更新時にも被らないように
         )
         org_csv_file_path = '/tmp/' + org_csv_file_name
         bucket.download_file(key, org_csv_file_path)
@@ -53,14 +51,12 @@ def data_import(key):
             bucket.put_object(Key=code + '/' + org_zip_file_name, Body=org_up_data)
         s3.Object(Settings.get_s3_bucket(), key).delete()
 
-        save_info = '[name] : ' + code
-        AppLog.save('s3_main.data_import 終了', save_info)
+        Util.put('s3_main.data_import 終了', '[name] : ' + code)
 
-    except Exception as e:
-        Util.put('s3_main.data_import エラー',e)
+    except:
         # エラー書き込み
         import traceback
-        AppLog.save('s3_main.data_import エラー', traceback.format_exc())
+        Util.put('s3_main.data_import エラー', traceback.format_exc())
 
 
 # デバックが地味に手間なので、

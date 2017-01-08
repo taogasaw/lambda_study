@@ -3,14 +3,14 @@ import csv
 import sys
 
 from library.csv_container import CsvContainer
-from library.app_log import AppLog
+from library.util import Util
 
 
 def data_import(csv_path):
     reload(sys)
     sys.setdefaultencoding("utf-8")
 
-    AppLog.save('変換開始', csv_path)
+    Util.put('変換開始', csv_path)
 
     with open(csv_path) as f:
         reader = csv.reader(f)
