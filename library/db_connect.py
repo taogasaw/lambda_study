@@ -23,8 +23,8 @@ class DBConnect(object):
         return con
 
     @classmethod
-    def get_connection_poke_web(cls):
-        u"ぽけ本体DBへのコネクション"
+    def get_connection_web(cls):
+        u"Web本体DBへのコネクション"
         con_str = "host=%s port=5432 dbname=%s user=%s password=%s" % (
             Settings.get_db_web_host(), Settings.get_db_web_name(),
             Settings.get_db_web_user(), Settings.get_db_web_pass()

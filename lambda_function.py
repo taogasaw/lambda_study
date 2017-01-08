@@ -5,11 +5,11 @@ import sys
 
 # イベントハンドラ
 def lambda_handler(event, context):
-    Util.put('lambda_handler', str(event))
-    # import pdb; pdb.set_trace()
-
     reload(sys)
     sys.setdefaultencoding("utf-8")
+
+    Util.put('lambda_handler', str(event))
+    # import pdb; pdb.set_trace()
 
     # イベントで振る舞いを変える
     for event_record in event['Records']:
