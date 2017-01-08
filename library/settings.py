@@ -21,21 +21,5 @@ class Settings(object):
         return os.environ.get('IMPORTER_DB_NAME')
 
     @classmethod
-    def get_db_web_host(cls):
-        return os.environ.get('WEB_DB_HOST')
-
-    @classmethod
-    def get_db_web_user(cls):
-        return os.environ.get('WEB_DB_USER')
-
-    @classmethod
-    def get_db_web_pass(cls):
-        return os.environ.get('WEB_DB_PASS')
-
-    @classmethod
-    def get_db_web_name(cls):
-        return os.environ.get('WEB_DB_NAME')
-
-    @classmethod
     def get_s3_bucket(cls):
         return os.environ.get('IMPORTER_S3_BUCKET')

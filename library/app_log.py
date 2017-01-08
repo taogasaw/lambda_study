@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from library.db_connect import DBConnect
-import logging
 import sys
 
 from library.util import Util
@@ -42,6 +41,7 @@ class AppLog(object):
         if self._title == '':
             raise Exception('タイトルは必須です')
 
+        # 本来はエラーとInfoを切り分けて処理する
         try:
             with DBConnect.get_connection() as con:
                 with con.cursor() as cur:
@@ -51,8 +51,4 @@ class AppLog(object):
         except Exception as e:
             Util.put('AppLog.save エラー',e)
 
-        logger = logging.getLogger()
-        logger.setLevel(logging.INFO)
-        # logger.setLevel(logging.ERROR) 本来は何らかでレベルを切り分ける
-        logger.info('■■■ AppLog ■■■ ' + self._title + '\r\n\r\n' + self._message)
         Util.put(u'■■■ AppLog ■■■', self._title, self._message)

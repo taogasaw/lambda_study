@@ -18,12 +18,11 @@ def data_import(csv_path):
 
         arr_csv_cnt = []
         # 一行ずつ処理
-        for i, row in enumerate(reader):  # indexつきで処理
-            # index = i + 1
+        for row in reader:  # indexつきで処理
             # CSVフォーマットのクラスへ保持する
             csv_cnt = CsvContainer()
-            csv_cnt.name = 'test_name_' + str(i)
-            csv_cnt.telephone = 'test_tel_' + str(i)
+            csv_cnt.name = row[0]
+            csv_cnt.telephone = row[1]
             # …ホントは続く
 
             arr_csv_cnt.append(csv_cnt)

@@ -6,8 +6,7 @@
 ## 事前準備・参加要件
 1. 5〜6回、各1.5〜2時間程度参加する時間の確保
 1. ノートPC、それぞれAdmin/root/sudo権限が使えるネットワークに繋がる端末
-1. 使用するプラットフォームに、python2.7系/pyenv/pyenv-virtualenvまたはvirtualenv/pipをインストールしておく  
-本当はここもやりたいけど、環境によってインストールの手間がだいぶ違いそうなので、事前準備とします  
+1. 使用するプラットフォームに、python2.7系(できればpyenvやpyenv-virtualenvまたはvirtualenvも)とpipをインストールしておく
 ググってインストールしといてください (^v^;)
 1. お気に入りのエディタ、できればpythonサポート機能を入れておく
 1. postgresとgit、それを自由にいじれる権限
@@ -15,8 +14,8 @@
 
 ## 勉強会概要
 1. 環境設定  
-  * pyenvとpyenv-virtualenvの使い方
   * AWS lambdaの基本的な使い方と、今回の開発概要の理解
+  * (補足)pyenvとpyenv-virtualenvの使い方
   * psycopg2とlambda-packagesのインストール
 1. 開発1_基本構成の設定
   * libraryディレクトリ以下のpyファイル作成

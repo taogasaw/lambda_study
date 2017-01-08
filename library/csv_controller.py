@@ -36,7 +36,7 @@ class CsvController(object):
             for i, csv_container in enumerate(arr_csv_container):  # indexつきで処理
                 try:
                     row_data = []
-                    row_data.append('"' + Util.str_none_to_empty(csv_container.name) + '"')
+                    row_data.append(Util.str_none_to_empty(csv_container.name))
                     row_data.append(csv_container.telephone)
                     csv_writer.writerow(row_data)
 
@@ -88,9 +88,9 @@ class CsvController(object):
 
     def _save_web_tmp_db(self, sql, tpl):
         try:
-            with DBConnect.get_connection_web() as con:
+            with DBConnect.get_connection() as con:
                 with con.cursor() as cur:
                     cur.execute(sql, tpl)
 
         except:
-            AppLog.save('_save_web_tmp_db エラー', traceback.format_exc() + '\r\n\r\n' + sql
+            AppLog.save('_save_web_tmp_db エラー', traceback.format_exc() + '\r\n\r\n' + sql)
