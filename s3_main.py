@@ -3,6 +3,8 @@ from library.util import Util
 from library.csv_controller import CsvController
 from library.settings import Settings
 import sys
+# lambdaには入っているが、開発環境には要インストール
+# pip install boto3
 import boto3
 
 from datetime import datetime
