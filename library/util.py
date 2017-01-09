@@ -19,7 +19,7 @@ class Util(object):
     def put(cls, *args):
         put_txt = '[%s]' % datetime.now()
         for arg in args:
-            put_txt += '    ' + str(arg)
+            put_txt += ' ■ ' + str(arg)
         print(put_txt)
         logger = logging.getLogger()
         logger.setLevel(logging.INFO)
