@@ -32,7 +32,7 @@ def data_import(key):
         org_csv_file_path = '/tmp/' + org_csv_file_name
         bucket.download_file(key, org_csv_file_path)
 
-        # CSVを各コラボレーターの仕様に則って変換、CSVデータの配列を返す
+        # CSVを各提供元の仕様に則って変換、CSVデータの配列を返す
         arr_csv_container = []
         import collaborator.netmarketing as collabo  # 本来は提携先によって取得処理を違わせる
         arr_csv_container = collabo.data_import(org_csv_file_path)
@@ -40,7 +40,7 @@ def data_import(key):
         # S3にCSVファイルとしてUP、ファイル名を返す
         csv_file = CsvController.save(org_csv_file_name, arr_csv_container, code)
 
-        # データをぽけのtmpDBに保存
+        # データをサービス用DBに保存
         CsvController.insert_web_tmp_db(arr_csv_container, csv_file)
 
         # S3のファイルをバックアップしてから削除
